@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
                 //Remove the room Froom the list
                 AvailableRooms.RemoveAt(roomRandomIndex);
                 //set room index to its cordinates
-                roomInstance.SetRoomLocation(coords, 0);
+                roomInstance.SetRoomLocation(coords);
                 
 
                 if (x > 0) roomInstance.WestDoorway.SetActive(false); // Open door to the west

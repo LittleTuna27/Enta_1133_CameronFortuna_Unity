@@ -13,6 +13,7 @@ public class User : MonoBehaviour
     public float lookSpeed = 3f;
     private GameObject playerCapsule;
     private Camera playerCamera;
+    public BaseRoom _baseRoom = null;
 
     void Start()
     {
@@ -41,8 +42,15 @@ public class User : MonoBehaviour
     {
         PlayerMovement();
         PlayerCamera();
+        PlayerSearchRoom();
     }
-
+    void PlayerSearchRoom()
+    {
+        if (_baseRoom != null)
+        {
+            _baseRoom.OnRoomSearched();
+        }
+    }
     void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.W))
@@ -74,6 +82,8 @@ public class User : MonoBehaviour
             //transform position of player forward at the speed set
             playerCapsule.transform.position -= walk * moveSpeed * Time.deltaTime;
         }
+
+       
     }
     void PlayerCamera()
     {
@@ -92,5 +102,6 @@ public class User : MonoBehaviour
             }
         }
     }
+
 }
 
