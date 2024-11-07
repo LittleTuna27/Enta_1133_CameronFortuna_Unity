@@ -1,0 +1,44 @@
+Repository
+https://github.com/LittleTuna27/Enta_1133_CameronFortuna_Unity
+
+Assets Used
+https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
+https://assetstore.unity.com/packages/3d/environments/dungeons/mine-92461
+https://assetstore.unity.com/packages/3d/props/low-poly-simple-medieval-props-258397
+https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/giant-monster-model-golem-278960
+https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-fantasy-rpg-weapons-248405
+
+Psuedocode
+
+MapManager
+creat list of possible rooms
+make 2 for loops, 1 for x and 1 for z
+call 1 item from list of rooms
+remove item from list
+assign location based of off where it needs to be
+check if door is inside the grid if so deactive the door
+
+GameManager
+
+get selection of rooms
+call spawn map function
+call player spawn
+start game
+
+PlayerSpawn
+playercapsule GameObject for player
+camera Camera for playerveiw
+spawn in player
+spawn in camera
+set player and camera location
+set camera to child of parent(playerCapsule)
+assign player movement
+assign camera movement
+
+
+BaseRoom
+refrence for doorwasys
+transfrom coordinates to map position
+onTriggerEnter
+onTriggerStayyed
+onTriggerExit
