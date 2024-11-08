@@ -9,7 +9,7 @@ public class TreasureRoom : BaseRoom
 {
     public void OnRoomEntered()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("You see A treasure trest with tons of coins what to do you do");
     }
     public void OnRoomSearched()
     {
@@ -20,7 +20,7 @@ public class TreasureRoom : BaseRoom
     }
     public void OnRoomExited()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("Base Room Exited");
     }
     private void OnTriggerEnter(Collider otherObject)
     {

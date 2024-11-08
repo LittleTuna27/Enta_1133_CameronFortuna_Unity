@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public MapManager GameRoomPrefabs;
     [SerializeField] private PlayerController PlayerPrefab;
     public User User;
+
     public MapManager _gameMap;
     private PlayerController _playerController;
 

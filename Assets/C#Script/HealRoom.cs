@@ -9,7 +9,7 @@ public class HealRoom : BaseRoom
 {
     public void OnRoomEntered()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("You see some weird runes");
     }
     public void OnRoomSearched()
     {
@@ -20,7 +20,7 @@ public class HealRoom : BaseRoom
     }
     public void OnRoomExited()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("Base Room Exited");
     }
     private void OnTriggerEnter(Collider otherObject)
     {

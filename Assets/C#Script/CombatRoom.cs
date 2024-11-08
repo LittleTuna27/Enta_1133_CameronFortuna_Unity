@@ -20,7 +20,7 @@ public class CombatRoom : BaseRoom
     }
     public void OnRoomExited()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("Base Room Exited");
     }
     private void OnTriggerEnter(Collider otherObject)
     {
