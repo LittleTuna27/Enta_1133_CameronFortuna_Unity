@@ -1,20 +1,24 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class MapManager : MonoBehaviour 
 {
-   
-    //[SerializeField] public BaseRoom[] RoomPrefabs;
     [SerializeField] private int RoomSize = 3;
     public int MapWidth = 3; // Width of the map (grid width)
     public int MapHeight = 3; // Height of the map (grid height)
-    public BaseRoom[,] Rooms; // 2D array to keep track of room instances in the grid
-    public List<BaseRoom> AvailableRooms = new List<BaseRoom>(); // List of available rooms to instantiate
+    [SerializeField] private BaseRoom[,] Rooms; // 2D array to keep track of room instances in the grid
+    [SerializeField] private List<BaseRoom> AvailableRooms = new List<BaseRoom>(); // List of available rooms to instantiate
+    [SerializeField] private List<BaseRoom> RefrecnedRooms = new List<BaseRoom>(); // List of available rooms to instantiate
 
+    private GameManager gameManager;
+    private User User;
+    public void SetGameManager(GameManager NONmanager, User user/*, PlayerInventory PlayerI /*/)
+    {
+        gameManager = NONmanager;
+        User = user;
+    }
     public void CreateMap()
     {
         
@@ -29,8 +33,14 @@ public class MapManager : MonoBehaviour
                 Debug.Log($"Creating room at coordinates: {coords}");
                 // get a random int from the list of rooms available
                 int roomRandomIndex = Random.Range(0, AvailableRooms.Count);
+
                 // Instantiate a random room prefab based on the randomRoomIndex
                 var roomInstance = Instantiate(AvailableRooms[roomRandomIndex], transform);
+
+                roomInstance.SetGameManager(gameManager, User/*, PlayerInventory/*/);
+
+
+                RefrecnedRooms.Add(roomInstance);
                 //Remove the room Froom the list
                 AvailableRooms.RemoveAt(roomRandomIndex);
                 //set room index to its cordinates
