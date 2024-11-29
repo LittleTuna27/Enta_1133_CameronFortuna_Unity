@@ -1,5 +1,5 @@
 Repository
-https://github.com/LittleTuna27/Enta_1133_CameronFortuna_Unity
+https://github.com/LittleTuna27/Enta_1133_CameronFortuna_Unitry_Final
 
 Assets Used
 https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933

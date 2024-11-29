@@ -1,49 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UIElements;
-
+﻿using UnityEngine;
 
 public class BaseRoom : MonoBehaviour
 {
-    [SerializeField] public GameObject NorthDoorway;
-    [SerializeField] public GameObject EastDoorway;
-    [SerializeField] public GameObject SouthDoorway;
-    [SerializeField] public GameObject WestDoorway;
-    
+     public GameObject NorthDoorway;
+     public GameObject EastDoorway;
+     public GameObject SouthDoorway;
+     public GameObject WestDoorway;
+
+    // public TMP_Text roomText; // Reference to the TextMeshPro RoomDescription
+
+    [SerializeField] protected string RoomEnter;
+    [SerializeField] protected string RoomMessage;
+    [SerializeField] protected string RoomExit;
+    [SerializeField] protected GameManager gameManager;
+    private User User;
+    public string roomName;
+    public virtual void SetGameManager(GameManager NONmanager, User user)
+    {
+        gameManager = NONmanager;
+        User = user;
+    }
     public void SetRoomLocation(Vector2 coords)
     {
         //move rooms cordinatrs x and z to the new position based on where it is spawning
         transform.position = new Vector3(coords.x, 0, coords.y);
-        
     }
-    public void OnRoomEntered()
+    public virtual void OnRoomEntered()
     {
+        //roomText.text = "Base Room Entered";
         Debug.Log("Base Room Entered");
+        Object.FindFirstObjectByType<InGameHUD>().TriggerTextBox();
+        Object.FindFirstObjectByType<InGameHUD>().UpdateTextBox(RoomEnter);
+
     }
-    public void OnRoomSearched()
+    public virtual void OnRoomSearched()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Base Room Searched");
-        }
+        Object.FindFirstObjectByType<InGameHUD>().UpdateTextBox(RoomMessage);
     }
-    public void OnRoomExited()
+
+    public virtual void OnRoomExited()
     {
         Debug.Log("Base Room Exited");
+        Object.FindFirstObjectByType<InGameHUD>().TriggerTextBoxClose(); // Capitalized "T" for consistency
+        Object.FindFirstObjectByType<InGameHUD>().UpdateTextBox(RoomExit);
     }
-    private void OnTriggerEnter(Collider otherObject)
+
+    public virtual void OnTriggerEnter(Collider otherObject)
     {
+        if(otherObject.tag == "Player")
+        {
+            otherObject.GetComponent<User>()._currentRoom = this;
+        }
         OnRoomEntered();
     }
-    private void OnTriggerStay(Collider otherObject)
-    {
-        OnRoomSearched();
-    }
-    private void OnTriggerExit(Collider otherObject)
+    //public void OnTriggerStay(Collider otherObject)
+    //{
+    //   // OnRoomSearched();
+    //}
+    public void OnTriggerExit(Collider otherObject)
     {
         OnRoomExited();
     }
