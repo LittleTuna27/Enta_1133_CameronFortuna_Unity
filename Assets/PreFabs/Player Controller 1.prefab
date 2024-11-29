@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7607533723487191920}
   - component: {fileID: 4185745408556822126}
+  - component: {fileID: 2477696518570049042}
   m_Layer: 0
   m_Name: Player Controller 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,11 +43,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5846735589549875464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888b7d8940db4e348840b2d2cb7e6e92, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d0cd4decd325d541aad6cfc7d4192c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _facingDirection: 0
-  RotationTime: 0.5
+  moveSpeed: 5
+  lookSpeed: 3
+  verticalRotation: 0
+  gravityStrength: 0
+  currentHP: 25
+  maxHp: 50
+  playerCapsule: {fileID: 0}
+  _currentRoom: {fileID: 0}
+  Controller: {fileID: 0}
+  MoveSmoothTime: 0
+--- !u!1652712579 &2477696518570049042
+MultiplayerRolesData:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846735589549875464}
+  m_GameObjectRolesMask: 7
+  m_ComponentsRolesMasks: []
 --- !u!1 &6322348886677782164
 GameObject:
   m_ObjectHideFlags: 0

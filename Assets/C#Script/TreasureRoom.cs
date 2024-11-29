@@ -1,37 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TreasureRoom : BaseRoom
 {
-    public void OnRoomEntered()
+    public bool treasureChestOpen = true;
+
+    public override void OnRoomSearched()
     {
-        Debug.Log("You see A treasure trest with tons of coins what to do you do");
+        AddItemToPlayer();
     }
-    public void OnRoomSearched()
+
+    public void AddItemToPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (treasureChestOpen)
         {
-            Debug.Log("Base Room Searched");
+            ItemGeneration();
+            ItemGeneration();
+            ItemGeneration();
+            ItemGeneration();
+            treasureChestOpen = false;
         }
+        else
+        {
+            RoomMessage = "You have already searched this room.";
+        }
+        
     }
-    public void OnRoomExited()
+
+    private Item GenerateRandomItem()
     {
-        Debug.Log("Base Room Exited");
+        List<Item> itemList = new List<Item>()
+        {
+            new Dagger(),
+            new StraightSword(),
+            new AXE(),
+            new Bow(),
+            new HealthPotion()
+        };
+
+        int randomIndex = Random.Range(0, itemList.Count);
+        return itemList[randomIndex];
     }
-    private void OnTriggerEnter(Collider otherObject)
+
+    public void ItemGeneration()
     {
-        OnRoomEntered();
-    }
-    private void OnTriggerStay(Collider otherObject)
-    {
-        OnRoomSearched();
-    }
-    private void OnTriggerExit(Collider otherObject)
-    {
-        OnRoomExited();
+        if (treasureChestOpen)
+        {
+            
+                Debug.LogWarning("WE DID WE DID ADD A ITEM?");
+                Item newItem = GenerateRandomItem();
+                PlayerInventory.Instance.AddItem(newItem); // Access the static instance
+        }
+        else
+        {
+            RoomMessage = "Yus Have Searched Here";
+        }
     }
 }

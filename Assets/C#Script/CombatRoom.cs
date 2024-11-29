@@ -1,38 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CombatRoom : BaseRoom
 {
-    public void OnRoomEntered()
+    public GameObject enemy;          // Reference to the enemy
+    public GameObject player;         // Reference to the player
+    public Vector3 roomCenter;        // The center of the room (you can set this manually or use the actual center)
+    public float roomWidth = 10f;     // Room's width (used for layout purposes)
+    public float roomHeight = 10f;    // Room's height (used for layout purposes)
+    public float roomDepth = 10f;     // Room's depth (for 3D room layout)
+    public bool inCombatRoom = false;
+
+    public int computerHealth = 30; //enemy health
+    public int computerDamadge = 0; //enemy damadge
+    public int computerDicePicked = 0;
+
+    public Item ItemV; // Ensure this is assigned in Inspector
+
+    public override void OnRoomEntered()
     {
-        Debug.Log("Base Room Entered");
+        Debug.Log("Combat Room entered");
+        inCombatRoom = true;
+        //gameManager.User.moveSpeed = 0;
+        Object.FindFirstObjectByType<InGameHUD>().TriggerTextBox();
+        Object.FindFirstObjectByType<InGameHUD>().UpdateTextBox(RoomEnter);
     }
-    public void OnRoomSearched()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        FacePlayer();
+       if (!ItemV.ItemUsed)
         {
-            Debug.Log("Base Room Searched");
+            computerTakeDamage();
+            CPUDamadge();
+            ItemV.ItemUsed = false;
         }
     }
-    public void OnRoomExited()
+    // This function makes the enemy always face the player
+    public void FacePlayer()
     {
-        Debug.Log("Base Room Exited");
+        // Ensure player and enemy are not null
+        if (player == null || enemy == null)
+        {
+            Debug.LogError("Player or Enemy is not assigned in CombatRoom!");
+            return;
+        }
+
+        // Calculate the direction from the enemy to the player
+        Vector3 direction = player.transform.position - enemy.transform.position;
+
+        if (direction.sqrMagnitude > 0) // Avoid dividing by zero if they are at the same position
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
     }
-    private void OnTriggerEnter(Collider otherObject)
+    public void CPUDamadge()
     {
-        OnRoomEntered();
+        if (computerHealth > 0)
+        {
+            computerDamadge = Random.Range(0, 15);
+            gameManager.User.currentHP -= computerDamadge;
+        }
     }
-    private void OnTriggerStay(Collider otherObject)
+    public void computerTakeDamage()
     {
-        OnRoomSearched();
-    }
-    private void OnTriggerExit(Collider otherObject)
-    {
-        OnRoomExited();
+        if (ItemV is WeaponBase weapon)
+        {
+            int damage = ItemV.ActionPoints;
+            computerHealth -= damage;
+
+        }
     }
 }
-

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &991987092390276797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755615342974203300}
+  - component: {fileID: 315229484328626619}
+  m_Layer: 0
+  m_Name: GameMapPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &755615342974203300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991987092390276797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &315229484328626619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991987092390276797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be625a73133cc4943b4a3582e312b5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomSize: 21
+  MapWidth: 3
+  MapHeight: 3
+  AvailableRooms:
+  - {fileID: 5124643864175641902, guid: 0d3adb4fa91a3874fab36d52d5a49349, type: 3}
+  - {fileID: 5124643864175641902, guid: 0d3adb4fa91a3874fab36d52d5a49349, type: 3}
+  - {fileID: 323736938848179158, guid: 39c1312cd31cf1b42aeaf06e311ca469, type: 3}
+  - {fileID: 323736938848179158, guid: 39c1312cd31cf1b42aeaf06e311ca469, type: 3}
+  - {fileID: 7102853370670554039, guid: 5669bf315a7bbc04893facddf890b175, type: 3}
+  - {fileID: 7102853370670554039, guid: 5669bf315a7bbc04893facddf890b175, type: 3}
+  - {fileID: 7799116116430722672, guid: b0dc76282d70a934fb9fcb8fb6a8fe2f, type: 3}
+  - {fileID: 9145218778978111271, guid: 912dbc723fb64294396dfa74d0b46360, type: 3}
+  - {fileID: 62852898946807059, guid: a36715de0ec6f2b44b99b793828414bd, type: 3}
